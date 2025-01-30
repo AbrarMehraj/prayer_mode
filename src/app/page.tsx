@@ -307,7 +307,7 @@ export default function Home() {
                   </div>
                   <h4 className="text-2xl font-semibold text-white text-center mb-6">Quick Setup</h4>
                   <p className="text-gray-300 text-center text-lg leading-relaxed">
-                    Simply install the app and grant necessary permissions. The app will automatically configure accurate prayer times for your location, and you're ready to enjoy uninterrupted prayer times.
+                    Simply install the app and grant necessary permissions. The app will automatically configure accurate prayer times for your location, and you&apos;re ready to enjoy uninterrupted prayer times.
                   </p>
                 </div>
               </div>
