@@ -148,17 +148,62 @@ export default function Home() {
                 <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto lg:mx-0">
                   Experience true peace during your prayers with our intelligent DND management. Let technology enhance your spiritual moments, not interrupt them.
                 </p>
-                <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+                {/* Download buttons container */}
+                <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-6">
+                  {/* Direct download button */}
                   <a
                     href={versions[0].link}
                     download
-                    className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-4 rounded-full font-medium text-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-3"
+                    className="group w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-4 rounded-full font-medium text-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center space-x-3"
                   >
                     <span>Download Now</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </a>
+                  {/* Google Play Store button */}
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.prayer.abrar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group w-full sm:w-auto bg-[#000000] hover:bg-[#111111] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px] h-[56px]"
+                  >
+                    <svg className="h-[24px] w-[24px] ml-2" viewBox="0 0 32 32">
+                      <path fill="#EA4335" d="M15.82 14.13L4.41 2.65C4.39 2.64 4.38 2.62 4.36 2.61C4.21 2.54 4.06 2.5 3.91 2.5C3.76 2.5 3.61 2.54 3.46 2.61L15.82 14.98L28.18 2.61C28.03 2.54 27.88 2.5 27.73 2.5C27.58 2.5 27.43 2.54 27.28 2.61C27.26 2.62 27.25 2.64 27.23 2.65L15.82 14.13Z"/>
+                      <path fill="#FBBC04" d="M15.82 17.87L4.41 29.35C4.39 29.36 4.38 29.38 4.36 29.39C4.21 29.46 4.06 29.5 3.91 29.5C3.76 29.5 3.61 29.46 3.46 29.39L15.82 17.02L28.18 29.39C28.03 29.46 27.88 29.5 27.73 29.5C27.58 29.5 27.43 29.46 27.28 29.39C27.26 29.38 27.25 29.36 27.23 29.35L15.82 17.87Z"/>
+                      <path fill="#34A853" d="M15.82 17.02L3.46 29.39C3.41 29.37 3.36 29.35 3.31 29.32C2.9 29.11 2.5 28.67 2.5 27.73V4.27C2.5 3.33 2.9 2.89 3.31 2.68C3.36 2.65 3.41 2.63 3.46 2.61L15.82 14.98V17.02Z"/>
+                      <path fill="#4285F4" d="M28.18 29.39L15.82 17.02V14.98L28.18 2.61C28.23 2.63 28.28 2.65 28.33 2.68C28.74 2.89 29.14 3.33 29.14 4.27V27.73C29.14 28.67 28.74 29.11 28.33 29.32C28.28 29.35 28.23 29.37 28.18 29.39Z"/>
+                    </svg>
+                    <div className="flex flex-col items-start leading-tight">
+                      <span className="text-[10px] font-normal">GET IT ON</span>
+                      <span className="text-[18px] font-medium -mt-1">Google Play</span>
+                    </div>
+                  </a>
+                </div>
+                {/* Latest Release Info */}
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 mb-6 max-w-md mx-auto lg:mx-0">
+                  <div className="flex items-start space-x-3">
+                    <div className="bg-blue-500/10 rounded-lg p-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-blue-400 mb-1">Latest Release - Jan 31, 2024</h4>
+                      <ul className="text-sm text-gray-300 space-y-1 list-disc list-inside">
+                        <li>Fixed crash on initial app load</li>
+                        <li>Performance improvements for smoother experience</li>
+                        <li>Bug fixes and stability enhancements</li>
+                      </ul>
+                      <p className="text-xs text-gray-400 mt-2">Update now for a more stable experience</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Info text and Learn More link */}
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-center lg:text-left">
+                  <div className="text-sm text-gray-400">
+                    * This website always has the latest version
+                  </div>
                   <a
                     href="#how-it-works"
                     className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-2"
