@@ -181,62 +181,130 @@ export default function Home() {
                   </a>
                 </div>
                 {/* Latest Release Info */}
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 mb-6 max-w-md mx-auto lg:mx-0">
-                  <div className="flex items-start space-x-3">
-                    <div className="bg-blue-500/10 rounded-lg p-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
+                <div className="space-y-4">
+                  {versions.map((version, index) => (
+                    <div key={index} className={`bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto lg:mx-0 ${version.isBeta ? 'border border-blue-500/30' : ''}`}>
+                      <div className="flex items-start space-x-3">
+                        <div className={`${version.isBeta ? 'bg-blue-500/20' : 'bg-blue-500/10'} rounded-lg p-2`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${version.isBeta ? 'text-blue-300' : 'text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            {version.isBeta ? (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            ) : (
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            )}
+                          </svg>
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="text-sm font-medium text-blue-400">{version.label} v{version.v}</h4>
+                            {version.isBeta && (
+                              <span className="px-2 py-0.5 text-xs font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta</span>
+                            )}
+                          </div>
+                          <p className="text-xs text-gray-400 mb-2">{version.releaseDate}</p>
+                          <ul className="text-sm text-gray-300 space-y-1 list-disc list-inside">
+                            {version.changes.map((change, idx) => (
+                              <li key={idx}>{change}</li>
+                            ))}
+                          </ul>
+                          <div className="flex items-center gap-3 mt-3">
+                            <a
+                              href={version.link}
+                              download
+                              className={`text-xs ${version.isBeta ? 'text-blue-300 hover:text-blue-200' : 'text-gray-400 hover:text-gray-300'} flex items-center gap-1 transition-colors duration-300`}
+                            >
+                              <span>Download {version.label}</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                              </svg>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-sm font-medium text-blue-400 mb-1">Latest Release - Jan 31, 2024</h4>
-                      <ul className="text-sm text-gray-300 space-y-1 list-disc list-inside">
-                        <li>Fixed crash on initial app load</li>
-                        <li>Performance improvements for smoother experience</li>
-                        <li>Bug fixes and stability enhancements</li>
-                      </ul>
-                      <p className="text-xs text-gray-400 mt-2">Update now for a more stable experience</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 {/* Info text and Learn More link */}
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-center lg:text-left">
                   <div className="text-sm text-gray-400">
                     * This website always has the latest version
                   </div>
-                  <a
-                    href="#how-it-works"
-                    className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-2"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector('#how-it-works')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    <span>Learn More</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </a>
+                 
                 </div>
               </div>
               <div className="flex-1 relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-30 animate-pulse" />
                 <div className="relative">
-                  <Image
-                    src="/ss1.png"
-                    alt="Prayer Mode App"
-                    width={300}
-                    height={600}
-                    className="rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500"
-                  />
-                  <div className="absolute -bottom-6 -right-6">
-                    <Image
-                      src="/ss2.png"
-                      alt="Prayer Mode Features"
-                      width={200}
-                      height={400}
-                      className="rounded-2xl shadow-2xl transform -rotate-6 hover:rotate-0 transition-all duration-500"
-                    />
+                  {/* Mobile View - Stacked Images */}
+                  <div className="lg:hidden space-y-8 px-4">
+                    <div className="relative transform hover:scale-105 transition-all duration-500">
+                      <Image
+                        src="/ss1.png"
+                        alt="Prayer Mode App"
+                        width={280}
+                        height={560}
+                        className="rounded-3xl shadow-2xl mx-auto"
+                      />
+                    </div>
+                    <div className="flex justify-center gap-4">
+                      <div className="relative transform hover:scale-105 transition-all duration-500">
+                        <Image
+                          src="/ss2.png"
+                          alt="Prayer Mode Features"
+                          width={180}
+                          height={360}
+                          className="rounded-2xl shadow-2xl"
+                        />
+                      </div>
+                      <div className="relative transform hover:scale-105 transition-all duration-500">
+                        <Image
+                          src="/instant-mode.png"
+                          alt="Instant Mode Feature"
+                          width={180}
+                          height={360}
+                          className="rounded-2xl shadow-2xl"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop View - Overlapping Images */}
+                  <div className="hidden lg:block relative">
+                    <div className="relative w-fit mx-auto">
+                      {/* Background glow effects */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 filter blur-3xl opacity-50 scale-150" />
+                      
+                      {/* Side Images */}
+                      <div className="absolute -left-20 top-20 transform -translate-y-12 hover:translate-y-0 hover:scale-110 transition-all duration-500 hover:z-30">
+                        <Image
+                          src="/instant-mode.png"
+                          alt="Instant Mode Feature"
+                          width={220}
+                          height={440}
+                          className="rounded-2xl shadow-2xl"
+                        />
+                      </div>
+                      <div className="absolute -right-20 top-20 transform -translate-y-12 hover:translate-y-0 hover:scale-110 transition-all duration-500 hover:z-30">
+                        <Image
+                          src="/ss2.png"
+                          alt="Prayer Mode Features"
+                          width={220}
+                          height={440}
+                          className="rounded-2xl shadow-2xl"
+                        />
+                      </div>
+
+                      {/* Main Image */}
+                      <div className="transform hover:scale-110 transition-all duration-500 hover:z-30">
+                        <Image
+                          src="/ss1.png"
+                          alt="Prayer Mode App"
+                          width={280}
+                          height={560}
+                          className="rounded-3xl shadow-2xl relative z-20"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -258,6 +326,16 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
+                {
+                  title: "Instant Mode",
+                  description: "Quick access mode for immediate DND activation with auto-decline and reply features",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  ),
+                  isBeta: true
+                },
                 {
                   title: "Prayer Times Sync",
                   description: "Accurate prayer times with offset adjustment capability for your location",
@@ -319,8 +397,13 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300" />
                   <div className="relative">
-                    <div className={`bg-gradient-to-br ${feature.title.includes('Coming Soon') ? 'from-gray-500 to-gray-600' : 'from-blue-500 to-blue-600'} p-3 rounded-xl w-fit mb-6 text-white`}>
-                      {feature.icon}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className={`bg-gradient-to-br ${feature.title.includes('Coming Soon') ? 'from-gray-500 to-gray-600' : 'from-blue-500 to-blue-600'} p-3 rounded-xl w-fit text-white`}>
+                        {feature.icon}
+                      </div>
+                      {feature.isBeta && (
+                        <span className="px-2 py-0.5 text-xs font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta</span>
+                      )}
                     </div>
                     <h4 className="text-xl font-semibold text-white mb-4">{feature.title}</h4>
                     <p className="text-gray-300">{feature.description}</p>
@@ -370,7 +453,7 @@ export default function Home() {
             </div>
             
             <div className="flex flex-wrap justify-center gap-8">
-              {["/ss1.png", "/ss2.png", "/ss3.png", "/ss4.png", "/ss5.png"].map((src, index) => (
+              {["/ss1.png", "/ss2.png", "/ss3.png", "/ss4.png", "/ss5.png", "/instant-mode.png"].map((src, index) => (
                 <div key={index} className="relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-all duration-300 blur-xl" />
                   <Image
