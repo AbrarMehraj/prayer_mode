@@ -196,7 +196,9 @@ export default function Home() {
                         </div>
                         <div>
                           <div className="flex items-center gap-2 mb-1">
-                            <h4 className="text-sm font-medium text-blue-400">{version.label} v{version.v}</h4>
+                            <h4 className="text-sm font-medium text-blue-400">{version.label} 
+                              {/* v{version.v} */}
+                              </h4>
                             {version.isBeta && (
                               <span className="px-2 py-0.5 text-xs font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta</span>
                             )}
