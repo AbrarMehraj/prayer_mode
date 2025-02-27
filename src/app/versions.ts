@@ -12,7 +12,7 @@ export const versions = [
     ]
   },
  
-  {
+ /* {
     label: 'Beta',
     v: "1.6.0-beta",
     link: "/app-priority.apk",
@@ -24,7 +24,7 @@ export const versions = [
       "Early access to premium features"
     ],
     isBeta: true
-  },
+  },*/
   {
     label: 'Beta',
     v: "1.6.0-beta",
