@@ -2,7 +2,7 @@ export const versions = [
   {
     label: 'Stable',
     v: "1.5.2",
-    link: "/app-release-stable.apk",
+    link: "/app-stable.apk",
     releaseDate: "Jan 31, 2025",
     changes: [
       "Fixed crash on initial app load",
@@ -11,10 +11,24 @@ export const versions = [
       "Bug fixes and stability enhancements"
     ]
   },
+ 
   {
     label: 'Beta',
     v: "1.6.0-beta",
-    link: "/app-release-beta.apk",
+    link: "/app-priority.apk",
+    releaseDate: "Feb 27, 2025",
+    changes: [
+      "Priority Contact Suite - Now Available",
+      "Exclusive VIP contact management system",
+      "Intelligent call filtering for essential communications",
+      "Early access to premium features"
+    ],
+    isBeta: true
+  },
+  {
+    label: 'Beta',
+    v: "1.6.0-beta",
+    link: "/app-instant.apk",
     releaseDate: "Feb 1, 2025",
     changes: [
       "New Instant Mode feature",

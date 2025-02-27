@@ -146,7 +146,7 @@ export default function Home() {
                   <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Focus on Your Prayers</span>
                 </h2>
                 <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto lg:mx-0">
-                  Experience true peace during your prayers with our intelligent DND management. Let technology enhance your spiritual moments, not interrupt them.
+                  Experience uninterrupted devotion with our refined Do Not Disturb system. Our thoughtfully designed technology creates a peaceful space for your prayers, enhancing your spiritual connection without distractions.
                 </p>
                 {/* Download buttons container */}
                 <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-6">
@@ -375,13 +375,14 @@ export default function Home() {
                   ),
                 },
                 {
-                  title: "Coming Soon: Priority Contacts",
-                  description: "Allow important calls during prayer times (Available in future update)",
+                  title: "Priority Contact Suite",
+                  description: "Stay connected to what matters most. Our Priority Contact feature lets you select important people who can reach you even during prayer times. Simply add family members or colleagues to your priority list, and their calls will come through while others are politely declined.",
                   icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                   ),
+                  isBeta: true
                 },
                 {
                   title: "Coming Soon: Backup & Sync",
@@ -441,6 +442,25 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+              
+              {/* New Whitelist Feature */}
+              <div className="relative group bg-gray-900 p-8 rounded-xl border border-gray-800 mt-8">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl" />
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-2xl">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <span className="px-3 py-1 text-sm font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta</span>
+                  </div>
+                  <h4 className="text-2xl font-semibold text-white text-center mb-6">Priority Contact Suite</h4>
+                  <p className="text-gray-300 text-center text-lg leading-relaxed">
+                    Stay connected to what matters most. Our Priority Contact feature lets you select important people who can reach you even during prayer times. Simply add family members or colleagues to your priority list, and their calls will come through while others are politely declined.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -455,7 +475,7 @@ export default function Home() {
             </div>
             
             <div className="flex flex-wrap justify-center gap-8">
-              {["/ss1.png", "/ss2.png", "/ss3.png", "/ss4.png", "/ss5.png", "/instant-mode.png"].map((src, index) => (
+              {["/ss1.png", "/ss2.png", "/ss3.png", "/ss4.png", "/ss5.png", "/instant-mode.png",'/whitelist.png'].map((src, index) => (
                 <div key={index} className="relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-all duration-300 blur-xl" />
                   <Image

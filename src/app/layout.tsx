@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Prayer Mode - Enjoy Your Prayer Time Without Interruptions",
-  description: "Experience tranquility in your prayer moments. Peace app seamlessly activates Do Not Disturb (DND) during your prayer times, creating a distraction-free space for deeper reflection and spiritual connection.",
+  description: "Experience profound tranquility during your spiritual moments. Prayer Mode intelligently manages your digital presence with sophisticated Do Not Disturb technology, featuring our exclusive VIP contact system that ensures you remain connected to what truly matters while immersed in devotion.",
   icons: {
     icon: '/app-icon.png',
   },
