@@ -375,14 +375,14 @@ export default function Home() {
                   ),
                 },
                 {
-                  title: "Priority Contact Suite",
+                  title: " Coming Soon: Priority Contact Suite",
                   description: "Stay connected to what matters most. Our Priority Contact feature lets you select important people who can reach you even during prayer times. Simply add family members or colleagues to your priority list, and their calls will come through while others are politely declined.",
                   icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                   ),
-                  isBeta: true
+                  // isBeta: true
                 },
                 {
                   title: "Coming Soon: Backup & Sync",

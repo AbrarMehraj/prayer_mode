@@ -1,6 +1,19 @@
 export const versions = [
   {
     label: 'Stable',
+    v: "1.6.1",
+    link: "/app-taraweeh.apk",
+    releaseDate: "Mar 10, 2025",
+    changes: [
+      "Enhanced Isha prayer mode for Ramadan Taraweeh",
+      "Extended duration support for night prayers",
+      "Dynamic maximum end time calculation",
+      "Improved UI with Taraweeh duration controls",
+      "Smart time management for spiritual devotion"
+    ]
+  },
+  {
+    label: 'Stable',
     v: "1.5.2",
     link: "/app-stable.apk",
     releaseDate: "Jan 31, 2025",
@@ -12,19 +25,19 @@ export const versions = [
     ]
   },
  
- /* {
-    label: 'Beta',
-    v: "1.6.0-beta",
+  {
+    label: 'Coming Soon',
+    v: "1.7.0",
     link: "/app-priority.apk",
-    releaseDate: "Feb 27, 2025",
+    releaseDate: "Apr 15, 2025",
     changes: [
-      "Priority Contact Suite - Now Available",
+      "Priority Contact Suite - Coming Soon",
       "Exclusive VIP contact management system",
       "Intelligent call filtering for essential communications",
       "Early access to premium features"
     ],
-    isBeta: true
-  },*/
+    isUpcoming: true
+  },
   {
     label: 'Beta',
     v: "1.6.0-beta",
