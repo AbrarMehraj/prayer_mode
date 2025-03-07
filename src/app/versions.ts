@@ -1,8 +1,8 @@
 export const versions = [
   {
     label: 'Stable',
-    v: "1.5.2",
-    link: "/prayer-mode.apk",
+    v: "1.5.3",
+    link: "/app-release.apk",
     releaseDate: "Feb 28, 2025",
     changes: [
       "Extended duration support for Taraweeh (night prayers)",
