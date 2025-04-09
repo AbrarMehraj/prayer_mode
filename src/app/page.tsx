@@ -30,29 +30,88 @@ interface MobileMenuProps {
   menuRef: React.RefObject<HTMLDivElement>;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, menuRef }) => (
-  <div ref={menuRef} className={`fixed top-16 left-0 w-full backdrop-blur-lg bg-gray-900/90 z-50 transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'} md:hidden`}>
-    <div className="flex flex-col items-center justify-center space-y-6 py-8">
-      <NavLink href="#features" onClick={(e) => { e.preventDefault(); document.querySelector('#features')?.scrollIntoView({ behavior: 'smooth' }); }}>Features</NavLink>
-      <NavLink href="#screenshots" onClick={(e) => { e.preventDefault(); document.querySelector('#screenshots')?.scrollIntoView({ behavior: 'smooth' }); }}>Screenshots</NavLink>
-      <NavLink href="#how-it-works" onClick={(e) => { e.preventDefault(); document.querySelector('#how-it-works')?.scrollIntoView({ behavior: 'smooth' }); }}>How It Works</NavLink>
-      <NavLink href="https://github.com/AbrarMehraj/web-peace/issues" target="_blank" rel="noopener noreferrer">Feedback</NavLink>
-      <a
-        href={versions[0].link}
-        download
-        className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
-      >
-        Download App
-      </a>
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, menuRef }) => {
+  const stableVersion = versions.find(v => !v.isBeta);
+  
+  return (
+    <div ref={menuRef} className={`fixed top-16 left-0 w-full backdrop-blur-lg bg-gray-900/90 z-50 transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'} md:hidden`}>
+      <div className="flex flex-col items-center justify-center space-y-6 py-8">
+        <NavLink href="#features" onClick={(e) => { e.preventDefault(); document.querySelector('#features')?.scrollIntoView({ behavior: 'smooth' }); }}>Features</NavLink>
+        <NavLink href="#screenshots" onClick={(e) => { e.preventDefault(); document.querySelector('#screenshots')?.scrollIntoView({ behavior: 'smooth' }); }}>Screenshots</NavLink>
+        <NavLink href="#how-it-works" onClick={(e) => { e.preventDefault(); document.querySelector('#how-it-works')?.scrollIntoView({ behavior: 'smooth' }); }}>How It Works</NavLink>
+        <NavLink href="https://github.com/AbrarMehraj/web-peace/issues" target="_blank" rel="noopener noreferrer">Feedback</NavLink>
+        <a
+          href={stableVersion?.link || 'https://play.google.com/store/apps/details?id=com.prayer.abrar'}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+        >
+          Download App
+        </a>
+      </div>
     </div>
-  </div>
-);
+  );
+}
+
+// Beta Release Banner Component - displays information about the beta release
+const BetaReleaseBanner: React.FC = () => {
+  const betaVersion = versions.find(v => v.isBeta);
+  
+  if (!betaVersion) return null;
+  
+  return (
+    <div className="relative my-12 max-w-4xl mx-auto overflow-hidden">
+      {/* Background glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl blur-xl" />
+      
+      <div className="relative bg-gray-900/80 backdrop-blur-md border border-blue-500/20 rounded-2xl p-6 md:p-8">
+        <div className="flex flex-col md:flex-row items-center gap-6">
+          <div className="flex-1 space-y-4">
+            <div className="flex items-center gap-3">
+              <span className="px-3 py-1 text-sm font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta {betaVersion.v}</span>
+              <span className="text-gray-400 text-sm">Released: {betaVersion.releaseDate}</span>
+            </div>
+            
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+              {betaVersion.highlight || "New Beta Release Available"}
+            </h3>
+            
+            <ul className="space-y-2">
+              {betaVersion.changes.map((change, index) => (
+                <li key={index} className="flex items-start gap-2 text-gray-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" />
+                  </svg>
+                  <span>{change}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div className="flex-shrink-0">
+            <a
+              href={betaVersion.link}
+              download
+              className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-3 rounded-full font-medium inline-flex items-center space-x-3 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <span>Try Beta Release</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
+  const stableVersion = versions.find(v => !v.isBeta);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -112,8 +171,9 @@ export default function Home() {
                 Feedback
               </NavLink>
               <a
-                href={versions[0].link}
-                download
+                href={stableVersion?.link || 'https://play.google.com/store/apps/details?id=com.prayer.abrar'}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="ml-4 bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
               >
                 Download App
@@ -150,20 +210,9 @@ export default function Home() {
                 </p>
                 {/* Download buttons container */}
                 <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-6">
-                  {/* Direct download button */}
+                  {/* Play Store button */}
                   <a
-                    href={versions[0].link}
-                    download
-                    className="group w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-4 rounded-full font-medium text-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center space-x-3"
-                  >
-                    <span>Download Now</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
-                  {/* Google Play Store button */}
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.prayer.abrar"
+                    href={stableVersion?.link || 'https://play.google.com/store/apps/details?id=com.prayer.abrar'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group w-full sm:w-auto bg-[#000000] hover:bg-[#111111] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px] h-[56px]"
@@ -176,62 +225,28 @@ export default function Home() {
                     </svg>
                     <div className="flex flex-col items-start leading-tight">
                       <span className="text-[10px] font-normal">GET IT ON</span>
-                      <span className="text-[18px] font-medium -mt-1">Google Play</span>
+                      <span className="text-[16px] font-medium -mt-1">Google Play</span>
                     </div>
                   </a>
+                  
+                  {/* Beta Download button */}
+                  <a
+                    href={versions.find(v => v.isBeta)?.link}
+                    download
+                    className="group w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-10 py-4 rounded-full font-medium text-lg inline-flex items-center space-x-3 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <span>Try Beta Release</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
                 </div>
-                {/* Latest Release Info */}
-                <div className="space-y-4">
-                  {versions.map((version, index) => (
-                    <div key={index} className={`bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto lg:mx-0 ${version.isBeta ? 'border border-blue-500/30' : ''}`}>
-                      <div className="flex items-start space-x-3">
-                        <div className={`${version.isBeta ? 'bg-blue-500/20' : 'bg-blue-500/10'} rounded-lg p-2`}>
-                          <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${version.isBeta ? 'text-blue-300' : 'text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            {version.isBeta ? (
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            ) : (
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            )}
-                          </svg>
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <h4 className="text-sm font-medium text-blue-400">{version.label} 
-                              {/* v{version.v} */}
-                              </h4>
-                            {version.isBeta && (
-                              <span className="px-2 py-0.5 text-xs font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta</span>
-                            )}
-                          </div>
-                          <p className="text-xs text-gray-400 mb-2">{version.releaseDate}</p>
-                          <ul className="text-sm text-gray-300 space-y-1 list-disc list-inside">
-                            {version.changes.map((change, idx) => (
-                              <li key={idx}>{change}</li>
-                            ))}
-                          </ul>
-                          <div className="flex items-center gap-3 mt-3">
-                            <a
-                              href={version.link}
-                              download
-                              className={`text-xs ${version.isBeta ? 'text-blue-300 hover:text-blue-200' : 'text-gray-400 hover:text-gray-300'} flex items-center gap-1 transition-colors duration-300`}
-                            >
-                              <span>Download {version.label}</span>
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                              </svg>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {/* Info text and Learn More link */}
+                
+                {/* Info text */}
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-center lg:text-left">
                   <div className="text-sm text-gray-400">
-                    * This website always has the latest version
+                    * Stable version available on Google Play Store
                   </div>
-                 
                 </div>
               </div>
               <div className="flex-1 relative">
@@ -251,8 +266,8 @@ export default function Home() {
                     <div className="flex justify-center gap-4">
                       <div className="relative transform hover:scale-105 transition-all duration-500">
                         <Image
-                          src="/ss2.png"
-                          alt="Prayer Mode Features"
+                          src="/whitelist.png"
+                          alt="Whitelist Contacts Feature"
                           width={180}
                           height={360}
                           className="rounded-2xl shadow-2xl"
@@ -288,8 +303,8 @@ export default function Home() {
                       </div>
                       <div className="absolute -right-20 top-20 transform -translate-y-12 hover:translate-y-0 hover:scale-110 transition-all duration-500 hover:z-30">
                         <Image
-                          src="/ss2.png"
-                          alt="Prayer Mode Features"
+                          src="/whitelist.png"
+                          alt="Whitelist Contacts Feature"
                           width={220}
                           height={440}
                           className="rounded-2xl shadow-2xl"
@@ -314,6 +329,9 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Add Beta Release Banner component here */}
+        <BetaReleaseBanner />
+
         {/* Features Section */}
         <section id="features" className="py-32 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/5 via-purple-900/5 to-blue-900/5" />
@@ -334,6 +352,16 @@ export default function Home() {
                   icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  ),
+                  isBeta: true
+                },
+                {
+                  title: "Priority Contact Suite",
+                  description: "Stay connected to what matters most with whitelist contacts - essential calls come through while others are politely declined",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                   ),
                   isBeta: true
@@ -373,16 +401,6 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   ),
-                },
-                {
-                  title: " Coming Soon: Priority Contact Suite",
-                  description: "Stay connected to what matters most. Our Priority Contact feature lets you select important people who can reach you even during prayer times. Simply add family members or colleagues to your priority list, and their calls will come through while others are politely declined.",
-                  icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
-                  ),
-                  // isBeta: true
                 },
                 {
                   title: "Coming Soon: Backup & Sync",
@@ -443,7 +461,7 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* New Whitelist Feature */}
+              {/* Beta Features Section */}
               <div className="relative group bg-gray-900 p-8 rounded-xl border border-gray-800 mt-8">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl" />
                 <div className="relative">
@@ -455,10 +473,33 @@ export default function Home() {
                     </div>
                     <span className="px-3 py-1 text-sm font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta</span>
                   </div>
-                  <h4 className="text-2xl font-semibold text-white text-center mb-6">Priority Contact Suite</h4>
-                  <p className="text-gray-300 text-center text-lg leading-relaxed">
-                    Stay connected to what matters most. Our Priority Contact feature lets you select important people who can reach you even during prayer times. Simply add family members or colleagues to your priority list, and their calls will come through while others are politely declined.
-                  </p>
+                  <h4 className="text-2xl font-semibold text-white text-center mb-6">Beta Features</h4>
+                  <div className="space-y-6">
+                    <div>
+                      <h5 className="text-xl font-medium text-blue-300 mb-2">Priority Contact Suite</h5>
+                      <p className="text-gray-300 text-lg leading-relaxed">
+                        Stay connected to what matters most. Our Priority Contact feature lets you select important people who can reach you even during prayer times. Simply add family members or colleagues to your whitelist, and their calls will come through while others are politely declined.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="text-xl font-medium text-blue-300 mb-2">Instant Modes</h5>
+                      <p className="text-gray-300 text-lg leading-relaxed">
+                        Activate DND instantly with a single tap. Our Instant Mode provides quick access for immediate activation with auto-decline calls and customized reply messages.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-8 text-center">
+                    <a
+                      href={versions.find(v => v.isBeta)?.link}
+                      download
+                      className="inline-flex items-center px-6 py-3 bg-blue-600/20 hover:bg-blue-600/30 rounded-lg text-blue-300 font-medium transition-colors duration-300"
+                    >
+                      <span>Try Beta Features Now</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -475,7 +516,7 @@ export default function Home() {
             </div>
             
             <div className="flex flex-wrap justify-center gap-8">
-              {["/ss1.png", "/ss2.png", "/ss3.png", "/ss4.png", "/ss5.png", "/instant-mode.png",'/whitelist.png'].map((src, index) => (
+              {["/ss1.png", "/ss2.png", "/ss3.png", "/ss4.png", "/ss5.png", "/instant-mode.png", "/whitelist.png"].map((src, index) => (
                 <div key={index} className="relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-all duration-300 blur-xl" />
                   <Image
@@ -501,16 +542,39 @@ export default function Home() {
               <p className="text-xl text-gray-300 mb-12">
                 Join thousands of users who have already enhanced their spiritual journey with Prayer Mode.
               </p>
-              <a
-                href={versions[0].link}
-                download
-                className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-12 py-5 rounded-full font-medium text-lg inline-flex items-center space-x-3 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <span>Download Prayer Mode</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
+              
+              <div className="flex flex-col sm:flex-row items-center gap-6 justify-center">
+                {/* Play Store Button */}
+                <a
+                  href={stableVersion?.link || 'https://play.google.com/store/apps/details?id=com.prayer.abrar'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-[#000000] hover:bg-[#111111] text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px]"
+                >
+                  <svg className="h-[24px] w-[24px] ml-2" viewBox="0 0 32 32">
+                    <path fill="#EA4335" d="M15.82 14.13L4.41 2.65C4.39 2.64 4.38 2.62 4.36 2.61C4.21 2.54 4.06 2.5 3.91 2.5C3.76 2.5 3.61 2.54 3.46 2.61L15.82 14.98L28.18 2.61C28.03 2.54 27.88 2.5 27.73 2.5C27.58 2.5 27.43 2.54 27.28 2.61C27.26 2.62 27.25 2.64 27.23 2.65L15.82 14.13Z"/>
+                    <path fill="#FBBC04" d="M15.82 17.87L4.41 29.35C4.39 29.36 4.38 29.38 4.36 29.39C4.21 29.46 4.06 29.5 3.91 29.5C3.76 29.5 3.61 29.46 3.46 29.39L15.82 17.02L28.18 29.39C28.03 29.46 27.88 29.5 27.73 29.5C27.58 29.5 27.43 29.46 27.28 29.39C27.26 29.38 27.25 29.36 27.23 29.35L15.82 17.87Z"/>
+                    <path fill="#34A853" d="M15.82 17.02L3.46 29.39C3.41 29.37 3.36 29.35 3.31 29.32C2.9 29.11 2.5 28.67 2.5 27.73V4.27C2.5 3.33 2.9 2.89 3.31 2.68C3.36 2.65 3.41 2.63 3.46 2.61L15.82 14.98V17.02Z"/>
+                    <path fill="#4285F4" d="M28.18 29.39L15.82 17.02V14.98L28.18 2.61C28.23 2.63 28.28 2.65 28.33 2.68C28.74 2.89 29.14 3.33 29.14 4.27V27.73C29.14 28.67 28.74 29.11 28.33 29.32C28.28 29.35 28.23 29.37 28.18 29.39Z"/>
+                  </svg>
+                  <div className="flex flex-col items-start leading-tight">
+                    <span className="text-[10px] font-normal">GET IT ON</span>
+                    <span className="text-[16px] font-medium -mt-1">Google Play</span>
+                  </div>
+                </a>
+                
+                {/* Beta Download Button */}
+                <a
+                  href={versions.find(v => v.isBeta)?.link}
+                  download
+                  className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-10 py-4 rounded-full font-medium text-lg inline-flex items-center space-x-3 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  <span>Try Beta Release</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </section>

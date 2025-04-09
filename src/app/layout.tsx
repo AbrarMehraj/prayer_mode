@@ -11,7 +11,28 @@ export const metadata: Metadata = {
   icons: {
     icon: '/app-icon.png',
   },
-
+  keywords: [
+    "Prayer Mode", 
+    "Do Not Disturb", 
+    "Prayer Times", 
+    "Muslim Prayer App", 
+    "Whitelist Contacts", 
+    "Priority Contacts", 
+    "Instant Mode",
+    "Beta Features"
+  ],
+  applicationName: "Prayer Mode",
+  openGraph: {
+    title: "Prayer Mode Beta - Now with Whitelist Contacts & Instant Modes",
+    description: "Our newest beta release features Priority Contact Suite (whitelist important contacts) and Instant Mode for immediate DND activation with auto-decline and customized replies.",
+    images: ['/app-icon.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Prayer Mode Beta - Whitelist Contacts & Instant Modes",
+    description: "Try our latest beta with Priority Contact Suite and Instant Mode features.",
+    images: ['/app-icon.png'],
+  }
 };
 
 export default function RootLayout({

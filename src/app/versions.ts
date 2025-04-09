@@ -2,11 +2,12 @@ export const versions = [
   {
     label: 'Stable',
     v: "1.5.3",
-    link: "/app-release.apk",
+    link: "https://play.google.com/store/apps/details?id=com.prayer.abrar",
     releaseDate: "Feb 28, 2025",
     changes: [
       "Extended duration support for Taraweeh (night prayers)",
-    ]
+    ],
+    isPlayStore: true
   },
  
  /* {
@@ -24,16 +25,18 @@ export const versions = [
   },*/
   {
     label: 'Beta',
-    v: "1.6.0-beta",
-    link: "/app-instant.apk",
-    releaseDate: "Feb 1, 2025",
+    v: "1.5.5",
+    link: "/app-release-beta.apk",
+    releaseDate: "9 Apr, 2025",
     changes: [
-      "New Instant Mode feature",
-      "Auto-Decline calls during active periods",
-      "Auto-Reply with selected message",
-      "Auto-override for prayer times",
-      "Early access to new features"
+      "Priority Contact Suite: Advanced Whitelist Contacts",
+      "Exclusive VIP Contact Management",
+      "Instant DND Activation",
+      "Enhanced Auto-Decline & Auto-Reply",
+      "Seamless Prayer Time Auto-Override",
+      "Prioritized Intelligent Call Filtering"
     ],
-    isBeta: true
+    isBeta: true,
+    highlight: "Experience the latest beta with Priority Contact Suite and Instant Modes"
   }
 ];
