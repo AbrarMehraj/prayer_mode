@@ -25,7 +25,7 @@ export const versions = [
   },*/
   {
     label: 'Beta',
-    v: "1.5.5",
+    v: "",
     link: "/app-release-beta.apk",
     releaseDate: "9 Apr, 2025",
     changes: [
