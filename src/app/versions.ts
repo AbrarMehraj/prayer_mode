@@ -29,6 +29,7 @@ export const versions = [
     link: "/app-release-beta.apk",
     releaseDate: "9 Apr, 2025",
     changes: [
+      "New Design - Completely Revamped UI",
       "Priority Contact Suite: Advanced Whitelist Contacts",
       "Exclusive VIP Contact Management",
       "Instant DND Activation",

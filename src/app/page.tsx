@@ -256,7 +256,7 @@ export default function Home() {
                   <div className="lg:hidden space-y-8 px-4">
                     <div className="relative transform hover:scale-105 transition-all duration-500">
                       <Image
-                        src="/ss1.png"
+                        src="/new-ui.png"
                         alt="Prayer Mode App"
                         width={280}
                         height={560}
@@ -314,7 +314,7 @@ export default function Home() {
                       {/* Main Image */}
                       <div className="transform hover:scale-110 transition-all duration-500 hover:z-30">
                         <Image
-                          src="/ss1.png"
+                          src="/new-ui.png"
                           alt="Prayer Mode App"
                           width={280}
                           height={560}
