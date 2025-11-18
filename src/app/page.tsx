@@ -91,7 +91,7 @@ const BetaReleaseBanner: React.FC = () => {
           <div className="flex-shrink-0">
             <a
               href={betaVersion.link}
-              download
+              download="prayer-mode-beta.apk"
               className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-3 rounded-full font-medium inline-flex items-center space-x-3 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
             >
               <span>Try Beta Release</span>
@@ -233,7 +233,7 @@ export default function Home() {
                   {/* Beta Download button */}
                   <a
                     href={versions.find(v => v.isBeta)?.link}
-                    download
+                    download="prayer-mode-beta.apk"
                     className="group w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-10 py-4 rounded-full font-medium text-lg inline-flex items-center space-x-3 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
                   >
                     <span>Try Beta Release</span>
@@ -492,7 +492,7 @@ export default function Home() {
                   <div className="mt-8 text-center">
                     <a
                       href={versions.find(v => v.isBeta)?.link}
-                      download
+                      download="prayer-mode-beta.apk" 
                       className="inline-flex items-center px-6 py-3 bg-blue-600/20 hover:bg-blue-600/30 rounded-lg text-blue-300 font-medium transition-colors duration-300"
                     >
                       <span>Try Beta Features Now</span>
@@ -568,7 +568,7 @@ export default function Home() {
                 {/* Beta Download Button */}
                 <a
                   href={versions.find(v => v.isBeta)?.link}
-                  download
+                  download="prayer-mode-beta.apk"
                   className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-10 py-4 rounded-full font-medium text-lg inline-flex items-center space-x-3 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <span>Try Beta Release</span>

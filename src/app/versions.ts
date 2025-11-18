@@ -26,7 +26,7 @@ export const versions = [
   {
     label: 'Beta',
     v: "",
-    link: "/prayer-mode-beta.apk",
+    link: "https://github.com/AbrarMehraj/prayer_mode/releases/download/instant_mode/prayer-mode-beta.apk",
     releaseDate: "18 Nov, 2025",
     changes: [
       "New Design - Completely Revamped UI",
