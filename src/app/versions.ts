@@ -26,8 +26,8 @@ export const versions = [
   {
     label: 'Beta',
     v: "",
-    link: "/app-release-beta.apk",
-    releaseDate: "9 Apr, 2025",
+    link: "/prayer-mode-beta.apk",
+    releaseDate: "18 Nov, 2025",
     changes: [
       "New Design - Completely Revamped UI",
       "Priority Contact Suite: Advanced Whitelist Contacts",

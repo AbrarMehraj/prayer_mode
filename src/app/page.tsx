@@ -13,11 +13,11 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick, target, rel }) => (
-  <a 
-    href={href} 
-    onClick={onClick} 
-    target={target} 
-    rel={rel} 
+  <a
+    href={href}
+    onClick={onClick}
+    target={target}
+    rel={rel}
     className="relative text-gray-300 hover:text-white px-4 py-2 transition-all duration-300 group"
   >
     <span className="relative z-10">{children}</span>
@@ -32,7 +32,7 @@ interface MobileMenuProps {
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, menuRef }) => {
   const stableVersion = versions.find(v => !v.isBeta);
-  
+
   return (
     <div ref={menuRef} className={`fixed top-16 left-0 w-full backdrop-blur-lg bg-gray-900/90 z-50 transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'} md:hidden`}>
       <div className="flex flex-col items-center justify-center space-y-6 py-8">
@@ -56,14 +56,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, menuRef }) => {
 // Beta Release Banner Component - displays information about the beta release
 const BetaReleaseBanner: React.FC = () => {
   const betaVersion = versions.find(v => v.isBeta);
-  
+
   if (!betaVersion) return null;
-  
+
   return (
     <div className="relative my-12 max-w-4xl mx-auto overflow-hidden">
       {/* Background glow effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl blur-xl" />
-      
+
       <div className="relative bg-gray-900/80 backdrop-blur-md border border-blue-500/20 rounded-2xl p-6 md:p-8">
         <div className="flex flex-col md:flex-row items-center gap-6">
           <div className="flex-1 space-y-4">
@@ -71,11 +71,11 @@ const BetaReleaseBanner: React.FC = () => {
               <span className="px-3 py-1 text-sm font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta {betaVersion.v}</span>
               <span className="text-gray-400 text-sm">Released: {betaVersion.releaseDate}</span>
             </div>
-            
+
             <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
               {betaVersion.highlight || "New Beta Release Available"}
             </h3>
-            
+
             <ul className="space-y-2">
               {betaVersion.changes.map((change, index) => (
                 <li key={index} className="flex items-start gap-2 text-gray-300">
@@ -87,7 +87,7 @@ const BetaReleaseBanner: React.FC = () => {
               ))}
             </ul>
           </div>
-          
+
           <div className="flex-shrink-0">
             <a
               href={betaVersion.link}
@@ -112,6 +112,7 @@ export default function Home() {
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
   const stableVersion = versions.find(v => !v.isBeta);
+  const supportEmail = "prayermode.official@gmail.com";
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -128,9 +129,9 @@ export default function Home() {
 
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        menuRef.current && 
+        menuRef.current &&
         !menuRef.current.contains(event.target as Node) &&
-        toggleButtonRef.current && 
+        toggleButtonRef.current &&
         !toggleButtonRef.current.contains(event.target as Node) // Check if the click is on the toggle button
       ) {
         setIsMobileMenuOpen(false);
@@ -150,7 +151,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#0A0F1C] text-white overflow-x-hidden">
       {/* Animated background gradient */}
       <div className="fixed inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-blue-900/20 animate-gradient-slow pointer-events-none" />
-      
+
       {/* Header */}
       <header className="fixed top-0 left-0 w-full backdrop-blur-md bg-[#0A0F1C]/80 z-40 border-b border-white/5">
         <div className="container mx-auto px-4 py-4">
@@ -162,7 +163,7 @@ export default function Home() {
               </div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Prayer Mode</h1>
             </div>
-            
+
             <nav className="hidden md:flex items-center space-x-2">
               <NavLink href="#features">Features</NavLink>
               <NavLink href="#screenshots">Screenshots</NavLink>
@@ -218,17 +219,17 @@ export default function Home() {
                     className="group w-full sm:w-auto bg-[#000000] hover:bg-[#111111] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px] h-[56px]"
                   >
                     <svg className="h-[24px] w-[24px] ml-2" viewBox="0 0 32 32">
-                      <path fill="#EA4335" d="M15.82 14.13L4.41 2.65C4.39 2.64 4.38 2.62 4.36 2.61C4.21 2.54 4.06 2.5 3.91 2.5C3.76 2.5 3.61 2.54 3.46 2.61L15.82 14.98L28.18 2.61C28.03 2.54 27.88 2.5 27.73 2.5C27.58 2.5 27.43 2.54 27.28 2.61C27.26 2.62 27.25 2.64 27.23 2.65L15.82 14.13Z"/>
-                      <path fill="#FBBC04" d="M15.82 17.87L4.41 29.35C4.39 29.36 4.38 29.38 4.36 29.39C4.21 29.46 4.06 29.5 3.91 29.5C3.76 29.5 3.61 29.46 3.46 29.39L15.82 17.02L28.18 29.39C28.03 29.46 27.88 29.5 27.73 29.5C27.58 29.5 27.43 29.46 27.28 29.39C27.26 29.38 27.25 29.36 27.23 29.35L15.82 17.87Z"/>
-                      <path fill="#34A853" d="M15.82 17.02L3.46 29.39C3.41 29.37 3.36 29.35 3.31 29.32C2.9 29.11 2.5 28.67 2.5 27.73V4.27C2.5 3.33 2.9 2.89 3.31 2.68C3.36 2.65 3.41 2.63 3.46 2.61L15.82 14.98V17.02Z"/>
-                      <path fill="#4285F4" d="M28.18 29.39L15.82 17.02V14.98L28.18 2.61C28.23 2.63 28.28 2.65 28.33 2.68C28.74 2.89 29.14 3.33 29.14 4.27V27.73C29.14 28.67 28.74 29.11 28.33 29.32C28.28 29.35 28.23 29.37 28.18 29.39Z"/>
+                      <path fill="#EA4335" d="M15.82 14.13L4.41 2.65C4.39 2.64 4.38 2.62 4.36 2.61C4.21 2.54 4.06 2.5 3.91 2.5C3.76 2.5 3.61 2.54 3.46 2.61L15.82 14.98L28.18 2.61C28.03 2.54 27.88 2.5 27.73 2.5C27.58 2.5 27.43 2.54 27.28 2.61C27.26 2.62 27.25 2.64 27.23 2.65L15.82 14.13Z" />
+                      <path fill="#FBBC04" d="M15.82 17.87L4.41 29.35C4.39 29.36 4.38 29.38 4.36 29.39C4.21 29.46 4.06 29.5 3.91 29.5C3.76 29.5 3.61 29.46 3.46 29.39L15.82 17.02L28.18 29.39C28.03 29.46 27.88 29.5 27.73 29.5C27.58 29.5 27.43 29.46 27.28 29.39C27.26 29.38 27.25 29.36 27.23 29.35L15.82 17.87Z" />
+                      <path fill="#34A853" d="M15.82 17.02L3.46 29.39C3.41 29.37 3.36 29.35 3.31 29.32C2.9 29.11 2.5 28.67 2.5 27.73V4.27C2.5 3.33 2.9 2.89 3.31 2.68C3.36 2.65 3.41 2.63 3.46 2.61L15.82 14.98V17.02Z" />
+                      <path fill="#4285F4" d="M28.18 29.39L15.82 17.02V14.98L28.18 2.61C28.23 2.63 28.28 2.65 28.33 2.68C28.74 2.89 29.14 3.33 29.14 4.27V27.73C29.14 28.67 28.74 29.11 28.33 29.32C28.28 29.35 28.23 29.37 28.18 29.39Z" />
                     </svg>
                     <div className="flex flex-col items-start leading-tight">
                       <span className="text-[10px] font-normal">GET IT ON</span>
                       <span className="text-[16px] font-medium -mt-1">Google Play</span>
                     </div>
                   </a>
-                  
+
                   {/* Beta Download button */}
                   <a
                     href={versions.find(v => v.isBeta)?.link}
@@ -241,7 +242,7 @@ export default function Home() {
                     </svg>
                   </a>
                 </div>
-                
+
                 {/* Info text */}
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-center lg:text-left">
                   <div className="text-sm text-gray-400">
@@ -252,12 +253,12 @@ export default function Home() {
               <div className="flex-1 relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-30 animate-pulse" />
                 <div className="relative">
-                  {/* Mobile View - Stacked Images */}
+                  {/* Mobile View - Stacked Images (uses new marketing renders) */}
                   <div className="lg:hidden space-y-8 px-4">
                     <div className="relative transform hover:scale-105 transition-all duration-500">
                       <Image
-                        src="/new-ui.png"
-                        alt="Prayer Mode App"
+                        src="/instant-mode-new.png"
+                        alt="Prayer Mode hero preview from latest batch"
                         width={280}
                         height={560}
                         className="rounded-3xl shadow-2xl mx-auto"
@@ -266,8 +267,8 @@ export default function Home() {
                     <div className="flex justify-center gap-4">
                       <div className="relative transform hover:scale-105 transition-all duration-500">
                         <Image
-                          src="/whitelist.png"
-                          alt="Whitelist Contacts Feature"
+                          src="/1.png"
+                          alt="Prayer Mode feature shot 1"
                           width={180}
                           height={360}
                           className="rounded-2xl shadow-2xl"
@@ -275,8 +276,8 @@ export default function Home() {
                       </div>
                       <div className="relative transform hover:scale-105 transition-all duration-500">
                         <Image
-                          src="/instant-mode.png"
-                          alt="Instant Mode Feature"
+                          src="/2.png"
+                          alt="Prayer Mode feature shot 2"
                           width={180}
                           height={360}
                           className="rounded-2xl shadow-2xl"
@@ -290,12 +291,12 @@ export default function Home() {
                     <div className="relative w-fit mx-auto">
                       {/* Background glow effects */}
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 filter blur-3xl opacity-50 scale-150" />
-                      
+
                       {/* Side Images */}
                       <div className="absolute -left-20 top-20 transform -translate-y-12 hover:translate-y-0 hover:scale-110 transition-all duration-500 hover:z-30">
                         <Image
-                          src="/instant-mode.png"
-                          alt="Instant Mode Feature"
+                          src="/3.png"
+                          alt="Prayer Mode feature shot 3"
                           width={220}
                           height={440}
                           className="rounded-2xl shadow-2xl"
@@ -303,8 +304,8 @@ export default function Home() {
                       </div>
                       <div className="absolute -right-20 top-20 transform -translate-y-12 hover:translate-y-0 hover:scale-110 transition-all duration-500 hover:z-30">
                         <Image
-                          src="/whitelist.png"
-                          alt="Whitelist Contacts Feature"
+                          src="/2.png"
+                          alt="Prayer Mode feature shot 2"
                           width={220}
                           height={440}
                           className="rounded-2xl shadow-2xl"
@@ -314,8 +315,8 @@ export default function Home() {
                       {/* Main Image */}
                       <div className="transform hover:scale-110 transition-all duration-500 hover:z-30">
                         <Image
-                          src="/new-ui.png"
-                          alt="Prayer Mode App"
+                          src="/1.png"
+                          alt="Prayer Mode feature shot 1"
                           width={280}
                           height={560}
                           className="rounded-3xl shadow-2xl relative z-20"
@@ -343,7 +344,7 @@ export default function Home() {
                 Designed with your spiritual journey in mind, our features ensure a distraction-free prayer experience.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
@@ -364,7 +365,7 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                   ),
-                  isBeta: true
+                  // Graduated from beta, so we intentionally omit isBeta
                 },
                 {
                   title: "Prayer Times Sync",
@@ -391,7 +392,7 @@ export default function Home() {
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                     </svg>
-                  ), 
+                  ),
                 },
                 {
                   title: "Hijri Calendar",
@@ -442,7 +443,7 @@ export default function Home() {
               <h3 className="text-sm uppercase tracking-wider text-blue-400 mb-4">Simple Process</h3>
               <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-8">How It Works</h2>
             </div>
-            
+
             <div className="max-w-3xl mx-auto">
               <div className="relative group bg-gray-900 p-8 rounded-xl border border-gray-800">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl" />
@@ -460,7 +461,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              
+
               {/* Beta Features Section */}
               <div className="relative group bg-gray-900 p-8 rounded-xl border border-gray-800 mt-8">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl" />
@@ -471,14 +472,14 @@ export default function Home() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                       </svg>
                     </div>
-                    <span className="px-3 py-1 text-sm font-medium text-blue-300 bg-blue-500/20 rounded-full">Beta</span>
+                    <span className="px-3 py-1 text-sm font-medium text-blue-300 bg-blue-500/20 rounded-full">Latest Updates</span>
                   </div>
-                  <h4 className="text-2xl font-semibold text-white text-center mb-6">Beta Features</h4>
+                  <h4 className="text-2xl font-semibold text-white text-center mb-6">Advanced & Beta Features</h4>
                   <div className="space-y-6">
                     <div>
-                      <h5 className="text-xl font-medium text-blue-300 mb-2">Priority Contact Suite</h5>
+                      <h5 className="text-xl font-medium text-blue-300 mb-2">Priority Contact Suite (Stable)</h5>
                       <p className="text-gray-300 text-lg leading-relaxed">
-                        Stay connected to what matters most. Our Priority Contact feature lets you select important people who can reach you even during prayer times. Simply add family members or colleagues to your whitelist, and their calls will come through while others are politely declined.
+                        Stay connected to what matters most. Priority Contact is now live in the stable channel, letting you select important people who can reach you even during prayer times. Simply add family members or colleagues to your whitelist, and their calls will come through while others are politely declined.
                       </p>
                     </div>
                     <div>
@@ -514,15 +515,16 @@ export default function Home() {
               <h3 className="text-sm uppercase tracking-wider text-blue-400 mb-4">Visual Tour</h3>
               <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-8">App Preview</h2>
             </div>
-            
+
             <div className="flex flex-wrap justify-center gap-8">
-              {["/ss1.png", "/ss2.png", "/ss3.png", "/ss4.png", "/ss5.png", "/instant-mode.png", "/whitelist.png"].map((src, index) => (
+              {/* New screenshot set keeps marketing site in sync with Drive assets */}
+              {[ "/1.png", "/2.png", "/3.png", "/4.png", "/55.png","/instant-mode-new.png"].map((src, index) => (
                 <div key={index} className="relative group">
                   <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-all duration-300 blur-xl" />
                   <Image
                     src={src}
                     alt={`Prayer Mode Screenshot ${index + 1}`}
-                    width={250}
+                    width={src === "/instant-mode-new.png" ? 200 : 250}
                     height={500}
                     className="relative rounded-2xl shadow-2xl transition-all duration-500 group-hover:transform group-hover:scale-105 group-hover:-rotate-2"
                   />
@@ -542,7 +544,7 @@ export default function Home() {
               <p className="text-xl text-gray-300 mb-12">
                 Join thousands of users who have already enhanced their spiritual journey with Prayer Mode.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center">
                 {/* Play Store Button */}
                 <a
@@ -552,17 +554,17 @@ export default function Home() {
                   className="group bg-[#000000] hover:bg-[#111111] text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px]"
                 >
                   <svg className="h-[24px] w-[24px] ml-2" viewBox="0 0 32 32">
-                    <path fill="#EA4335" d="M15.82 14.13L4.41 2.65C4.39 2.64 4.38 2.62 4.36 2.61C4.21 2.54 4.06 2.5 3.91 2.5C3.76 2.5 3.61 2.54 3.46 2.61L15.82 14.98L28.18 2.61C28.03 2.54 27.88 2.5 27.73 2.5C27.58 2.5 27.43 2.54 27.28 2.61C27.26 2.62 27.25 2.64 27.23 2.65L15.82 14.13Z"/>
-                    <path fill="#FBBC04" d="M15.82 17.87L4.41 29.35C4.39 29.36 4.38 29.38 4.36 29.39C4.21 29.46 4.06 29.5 3.91 29.5C3.76 29.5 3.61 29.46 3.46 29.39L15.82 17.02L28.18 29.39C28.03 29.46 27.88 29.5 27.73 29.5C27.58 29.5 27.43 29.46 27.28 29.39C27.26 29.38 27.25 29.36 27.23 29.35L15.82 17.87Z"/>
-                    <path fill="#34A853" d="M15.82 17.02L3.46 29.39C3.41 29.37 3.36 29.35 3.31 29.32C2.9 29.11 2.5 28.67 2.5 27.73V4.27C2.5 3.33 2.9 2.89 3.31 2.68C3.36 2.65 3.41 2.63 3.46 2.61L15.82 14.98V17.02Z"/>
-                    <path fill="#4285F4" d="M28.18 29.39L15.82 17.02V14.98L28.18 2.61C28.23 2.63 28.28 2.65 28.33 2.68C28.74 2.89 29.14 3.33 29.14 4.27V27.73C29.14 28.67 28.74 29.11 28.33 29.32C28.28 29.35 28.23 29.37 28.18 29.39Z"/>
+                    <path fill="#EA4335" d="M15.82 14.13L4.41 2.65C4.39 2.64 4.38 2.62 4.36 2.61C4.21 2.54 4.06 2.5 3.91 2.5C3.76 2.5 3.61 2.54 3.46 2.61L15.82 14.98L28.18 2.61C28.03 2.54 27.88 2.5 27.73 2.5C27.58 2.5 27.43 2.54 27.28 2.61C27.26 2.62 27.25 2.64 27.23 2.65L15.82 14.13Z" />
+                    <path fill="#FBBC04" d="M15.82 17.87L4.41 29.35C4.39 29.36 4.38 29.38 4.36 29.39C4.21 29.46 4.06 29.5 3.91 29.5C3.76 29.5 3.61 29.46 3.46 29.39L15.82 17.02L28.18 29.39C28.03 29.46 27.88 29.5 27.73 29.5C27.58 29.5 27.43 29.46 27.28 29.39C27.26 29.38 27.25 29.36 27.23 29.35L15.82 17.87Z" />
+                    <path fill="#34A853" d="M15.82 17.02L3.46 29.39C3.41 29.37 3.36 29.35 3.31 29.32C2.9 29.11 2.5 28.67 2.5 27.73V4.27C2.5 3.33 2.9 2.89 3.31 2.68C3.36 2.65 3.41 2.63 3.46 2.61L15.82 14.98V17.02Z" />
+                    <path fill="#4285F4" d="M28.18 29.39L15.82 17.02V14.98L28.18 2.61C28.23 2.63 28.28 2.65 28.33 2.68C28.74 2.89 29.14 3.33 29.14 4.27V27.73C29.14 28.67 28.74 29.11 28.33 29.32C28.28 29.35 28.23 29.37 28.18 29.39Z" />
                   </svg>
                   <div className="flex flex-col items-start leading-tight">
                     <span className="text-[10px] font-normal">GET IT ON</span>
                     <span className="text-[16px] font-medium -mt-1">Google Play</span>
                   </div>
                 </a>
-                
+
                 {/* Beta Download Button */}
                 <a
                   href={versions.find(v => v.isBeta)?.link}
@@ -594,13 +596,23 @@ export default function Home() {
               <NavLink href="#features">Features</NavLink>
               <NavLink href="#screenshots">Screenshots</NavLink>
               <NavLink href="#how-it-works">How It Works</NavLink>
-              <NavLink href="https://github.com/AbrarMehraj/web-peace/issues" target="_blank" rel="noopener noreferrer">
+              <NavLink href="https://play.google.com/store/apps/details?id=com.prayer.abrar" target="_blank" rel="noopener noreferrer">
                 Feedback
               </NavLink>
             </div>
+            {/* Simple support contact so the section feels friendly and approachable */}
+            <div className="text-center md:text-right">
+              <p className="text-gray-400 text-sm mb-1">Need a hand?</p>
+              <a
+                href={`mailto:${supportEmail}`}
+                className="text-blue-300 hover:text-blue-100 underline underline-offset-4 transition-colors duration-200"
+              >
+                {supportEmail}
+              </a>
+            </div>
           </div>
           <div className="mt-12 pt-8 border-t border-white/5 text-center">
-            <p className="text-gray-400">&copy; 2024 Prayer Mode. Crafted with ❤️ by Abrar Mehraj</p>
+            <p className="text-gray-400">&copy;  {new Date().getFullYear()} Prayer Mode. Crafted with ❤️ by Abrar Mehraj</p>
           </div>
         </div>
       </footer>
