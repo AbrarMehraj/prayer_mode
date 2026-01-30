@@ -1,3 +1,7 @@
+/** Direct APK link for the full-featured build (auto reply, contact whitelist) — outside Play Store */
+export const fullFeaturesApkLink =
+  "https://github.com/AbrarMehraj/Prayer-mode-site/releases/download/Auto-reply/prayer-mode.apk"
+
 export const versions = [
   {
     label: 'Stable',

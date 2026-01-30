@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { versions } from "./versions";
+import { versions, fullFeaturesApkLink } from "./versions";
 
 interface NavLinkProps {
   href: string;
@@ -41,12 +41,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, menuRef }) => {
         <NavLink href="#how-it-works" onClick={(e) => { e.preventDefault(); document.querySelector('#how-it-works')?.scrollIntoView({ behavior: 'smooth' }); }}>How It Works</NavLink>
         <NavLink href="https://github.com/AbrarMehraj/web-peace/issues" target="_blank" rel="noopener noreferrer">Feedback</NavLink>
         <a
+          href={fullFeaturesApkLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          download="prayer-mode-full.apk"
+          className="bg-[#065f46] hover:bg-[#047857] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2 min-w-[180px] h-[48px]"
+        >
+          <span className="text-[10px] uppercase">Direct download</span>
+          <span className="text-base font-medium">Full-Featured APK</span>
+        </a>
+        <a
           href={stableVersion?.link || 'https://play.google.com/store/apps/details?id=com.prayer.abrar'}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+          className="bg-[#000000] hover:bg-[#111111] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2 min-w-[180px] h-[48px]"
         >
-          Download App
+          <span className="text-[10px] uppercase">Get it on</span>
+          <span className="text-base font-medium">Google Play</span>
         </a>
       </div>
     </div>
@@ -92,12 +103,15 @@ const BetaReleaseBanner: React.FC = () => {
             <a
               href={betaVersion.link}
               download="prayer-mode-beta.apk"
-              className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-3 rounded-full font-medium inline-flex items-center space-x-3 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+              className="group bg-[#1e3a8a] hover:bg-[#1e40af] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 min-w-[180px] h-[48px]"
             >
-              <span>Try Beta Release</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-[22px] w-[22px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
+              <div className="flex flex-col items-start leading-tight">
+                <span className="text-[10px] font-normal">GET IT ON</span>
+                <span className="text-[15px] font-medium -mt-1">Instant Mode APK - Beta Release</span>
+              </div>
             </a>
           </div>
         </div>
@@ -171,14 +185,6 @@ export default function Home() {
               <NavLink href="https://github.com/AbrarMehraj/web-peace/issues" target="_blank" rel="noopener noreferrer">
                 Feedback
               </NavLink>
-              <a
-                href={stableVersion?.link || 'https://play.google.com/store/apps/details?id=com.prayer.abrar'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-4 bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
-              >
-                Download App
-              </a>
             </nav>
 
             <button
@@ -230,16 +236,21 @@ export default function Home() {
                     </div>
                   </a>
 
-                  {/* Beta Download button */}
+                  {/* Full-Featured APK — badge style like Google Play */}
                   <a
-                    href={versions.find(v => v.isBeta)?.link}
-                    download="prayer-mode-beta.apk"
-                    className="group w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white px-10 py-4 rounded-full font-medium text-lg inline-flex items-center space-x-3 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+                    href={fullFeaturesApkLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download="prayer-mode-full.apk"
+                    className="group w-full sm:w-auto bg-[#065f46] hover:bg-[#047857] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px] h-[56px]"
                   >
-                    <span>Try Beta Release</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-[24px] w-[24px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
+                    <div className="flex flex-col items-start leading-tight">
+                      <span className="text-[10px] font-normal">DIRECT DOWNLOAD</span>
+                      <span className="text-[16px] font-medium -mt-1">Full-Featured APK</span>
+                    </div>
                   </a>
                 </div>
 
@@ -247,6 +258,9 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-center lg:text-left">
                   <div className="text-sm text-gray-400">
                     * Stable version available on Google Play Store
+                  </div>
+                  <div className="text-sm text-gray-400">
+                    * Full-Featured APK includes auto reply &amp; contact whitelist (outside Play Store)
                   </div>
                 </div>
               </div>
@@ -492,13 +506,16 @@ export default function Home() {
                   <div className="mt-8 text-center">
                     <a
                       href={versions.find(v => v.isBeta)?.link}
-                      download="prayer-mode-beta.apk" 
-                      className="inline-flex items-center px-6 py-3 bg-blue-600/20 hover:bg-blue-600/30 rounded-lg text-blue-300 font-medium transition-colors duration-300"
+                      download="prayer-mode-beta.apk"
+                      className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-[#1e3a8a] hover:bg-[#1e40af] text-white rounded-lg font-medium transition-all duration-300 min-w-[180px] h-[48px]"
                     >
-                      <span>Try Beta Features Now</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-[22px] w-[22px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
+                      <div className="flex flex-col items-start leading-tight">
+                        <span className="text-[10px] font-normal">GET IT ON</span>
+                        <span className="text-[15px] font-medium -mt-1">Instant Mode APK - Beta Release</span>
+                      </div>
                     </a>
                   </div>
                 </div>
@@ -545,7 +562,7 @@ export default function Home() {
                 Join thousands of users who have already enhanced their spiritual journey with Prayer Mode.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row items-center gap-6 justify-center flex-wrap">
                 {/* Play Store Button */}
                 <a
                   href={stableVersion?.link || 'https://play.google.com/store/apps/details?id=com.prayer.abrar'}
@@ -565,16 +582,36 @@ export default function Home() {
                   </div>
                 </a>
 
-                {/* Beta Download Button */}
+                {/* Full-Featured APK — badge style like Google Play */}
+                <a
+                  href={fullFeaturesApkLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="prayer-mode-full.apk"
+                  className="group bg-[#065f46] hover:bg-[#047857] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px] h-[56px]"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-[24px] w-[24px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  <div className="flex flex-col items-start leading-tight">
+                    <span className="text-[10px] font-normal">DIRECT DOWNLOAD</span>
+                    <span className="text-[16px] font-medium -mt-1">Full-Featured APK</span>
+                  </div>
+                </a>
+
+                {/* Beta — badge style like Google Play */}
                 <a
                   href={versions.find(v => v.isBeta)?.link}
                   download="prayer-mode-beta.apk"
-                  className="group bg-gradient-to-r from-blue-600 to-blue-400 text-white px-10 py-4 rounded-full font-medium text-lg inline-flex items-center space-x-3 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1"
+                  className="group bg-[#1e3a8a] hover:bg-[#1e40af] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px] h-[56px]"
                 >
-                  <span>Try Beta Release</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-[24px] w-[24px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
+                  <div className="flex flex-col items-start leading-tight">
+                    <span className="text-[10px] font-normal">GET IT ON</span>
+                    <span className="text-[16px] font-medium -mt-1">Instant Mode APK - Beta Release</span>
+                  </div>
                 </a>
               </div>
             </div>
