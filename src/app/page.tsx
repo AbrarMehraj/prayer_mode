@@ -239,9 +239,8 @@ export default function Home() {
                   {/* Full-Featured APK — badge style like Google Play */}
                   <a
                     href={fullFeaturesApkLink}
-                    target="_blank"
                     rel="noopener noreferrer"
-                    download="prayer-mode-full.apk"
+                    download="prayer-mode.apk"
                     className="group w-full sm:w-auto bg-[#065f46] hover:bg-[#047857] text-white px-6 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 min-w-[200px] h-[56px]"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-[24px] w-[24px] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
