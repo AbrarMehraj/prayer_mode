@@ -259,7 +259,7 @@ export default function Home() {
                     * Stable version available on Google Play Store
                   </div>
                   <div className="text-sm text-gray-400">
-                    * Full-Featured APK includes auto reply &amp; contact whitelist (outside Play Store)
+                    * Full-Featured APK includes auto cancel call & SMS reply (outside Play Store)
                   </div>
                 </div>
               </div>
