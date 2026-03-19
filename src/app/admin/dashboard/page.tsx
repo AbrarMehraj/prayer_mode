@@ -50,9 +50,14 @@ const AdminDashboardPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0A0F1C] text-white px-4 py-10">
-      <div className="max-w-6xl mx-auto">
-        <header className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-semibold">Admin Dashboard</h1>
+      <div className="max-w-6xl mx-auto space-y-8">
+        <header className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-semibold">Admin Dashboard</h1>
+            <p className="text-sm text-gray-400 mt-1">
+              Quick access to your admin tools.
+            </p>
+          </div>
           <button
             onClick={handleLogout}
             disabled={isLoggingOut}
@@ -62,26 +67,23 @@ const AdminDashboardPage: React.FC = () => {
           </button>
         </header>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="bg-gray-900/80 border border-gray-800 rounded-2xl p-5">
-            <h2 className="text-sm font-medium text-gray-300 mb-2">Overview</h2>
+        {/* Key admin actions */}
+        <section className="grid gap-6 md:grid-cols-3">
+          <button
+            type="button"
+            onClick={() => router.push("/admin/masjids")}
+            className="bg-gray-900/80 border border-gray-800 rounded-2xl p-5 text-left hover:border-blue-500/60 hover:bg-gray-900 transition-colors"
+          >
+            <h2 className="text-sm font-medium text-gray-100 mb-2">
+              Pending Masjids
+            </h2>
             <p className="text-xs text-gray-400">
-              Quick snapshot of key metrics can go here (downloads, active users, beta usage, etc.).
+              Review and approve or reject new masjid submissions.
             </p>
-          </div>
-          <div className="bg-gray-900/80 border border-gray-800 rounded-2xl p-5">
-            <h2 className="text-sm font-medium text-gray-300 mb-2">Releases</h2>
-            <p className="text-xs text-gray-400">
-              You could later list app versions or toggle beta availability from this section.
-            </p>
-          </div>
-          <div className="bg-gray-900/80 border border-gray-800 rounded-2xl p-5">
-            <h2 className="text-sm font-medium text-gray-300 mb-2">Notes</h2>
-            <p className="text-xs text-gray-400">
-              Space for internal notes, upcoming features, or quick links for you as the admin.
-            </p>
-          </div>
-        </div>
+          </button>
+
+          
+        </section>
       </div>
     </div>
   );
